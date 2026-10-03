@@ -1,0 +1,25 @@
+# name: Office Chats
+# members: Priya, Dev, Sam
+
+[Priya] [14:02]
+Which database are we using?
+[Dev] [14:03]
+Yes.
+[Priya] [14:04]
+PostgreSQL or MongoDB?
+[Dev] [14:05]
+Yes.
+[Priya] [14:06]
+I mean which one are we actually using?
+[Sam] [14:10]
+Lunch at 1?
+[Priya] [14:11]
+Sure, 1 works.
+[Sam] [14:15]
+Did anyone submit the report?
+[Dev] [14:16]
+The presentation is ready.
+[Priya] [14:17]
+Let's meet at 4.
+[Sam] [14:20]
+Okay, I'll look at the report after lunch.

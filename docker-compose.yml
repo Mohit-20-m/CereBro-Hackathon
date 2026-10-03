@@ -1,0 +1,65 @@
+# ANVAYA – Connecting context. Detecting gaps.
+# Start everything with:  docker compose up --build
+# Then open:              http://localhost:5173
+
+name: anvaya
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-anvaya}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-anvaya}
+      POSTGRES_DB: ${POSTGRES_DB:-anvaya}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-anvaya}:${POSTGRES_PASSWORD:-anvaya}@db:5432/${POSTGRES_DB:-anvaya}
+      DATA_DIR: /app/data
+      AI_ENABLED: ${AI_ENABLED:-true}
+      NLI_ENABLED: ${NLI_ENABLED:-true}
+      # Optional small LLM for the Investigator and Critic. Empty = off.
+      OLLAMA_URL: ${OLLAMA_URL:-}
+      LLM_MODEL: ${LLM_MODEL:-qwen2.5:1.5b}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./data:/app/data:ro
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_PORT:-5173}:80"
+    depends_on:
+      - backend
+
+  # Optional LLM container. Only starts with:  docker compose --profile llm up --build
+  # (and OLLAMA_URL=http://ollama:11434 in .env). Not needed for normal use.
+  ollama:
+    image: ollama/ollama:latest
+    profiles: ["llm"]
+    restart: unless-stopped
+    environment:
+      OLLAMA_KEEP_ALIVE: 24h
+    volumes:
+      - ollama:/root/.ollama
+
+volumes:
+  pgdata:
+  ollama:

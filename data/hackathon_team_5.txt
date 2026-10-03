@@ -1,0 +1,33 @@
+# name: Hackathon Team 5
+# members: Aishu, Rahul, Keerti, Mohit
+
+[Rahul] [10:15]
+Morning guys, standup at 10:30?
+[Keerti] [10:16]
+Yes, I'll join.
+[Aishu] [10:21]
+Guys schema yaaru send madidru?
+[Rahul] [10:22]
+Frontend almost done.
+[Keerti] [10:23]
+I'll complete the UI.
+[Mohit] [10:24]
+Deployment ge Docker ready aagide.
+[Aishu] [10:25]
+Guys I asked about the schema.
+[Mohit] [10:27]
+I'll check.
+[Rahul] [10:30]
+Guys API yaaru handle madthare?
+[Keerti] [10:31]
+Meeting 4 ge alva?
+[Mohit] [10:32]
+Haudu, 4 ge fix.
+[Aishu] [10:34]
+PPT slides ready aagidhe, tonight share madthini.
+[Rahul] [10:36]
+API yaaru handle madthare? Still no one?
+[Keerti] [10:38]
+Presentation done 👍
+[Mohit] [10:40]
+API docs nale update madthini.

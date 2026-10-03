@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply font-sans text-ink antialiased;
+    background: linear-gradient(180deg, #cfd6c4 0%, #f3c3b2 32%, #fde8d3 64%, #daebe3 100%);
+    background-attachment: fixed;
+  }
+
+  button,
+  input {
+    font-family: inherit;
+  }
+
+  button:focus-visible,
+  input:focus-visible,
+  a:focus-visible {
+    outline: 2px solid #657166;
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: #99cdd8;
+  }
+}
+
+/* Thin scrollbars that match the palette */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #cfd6c4 transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #cfd6c4;
+  border-radius: 999px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #657166;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
